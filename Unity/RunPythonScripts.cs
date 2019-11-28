@@ -19,12 +19,6 @@ using System.IO;
 //Class which contains Python related functions
 public class RunPythonScripts : MonoBehaviour {
 
-	void Start () {	
-	}
-	
-	void Update () {	
-	}
-
     //Checks if Python is installed -> if not installs it
     public void checkPythonInstallation(){
         ProcessStartInfo pythonVerify = new ProcessStartInfo();
