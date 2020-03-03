@@ -19,6 +19,10 @@ using System.IO;
 //Class which contains Python related functions
 public class RunPythonScripts : MonoBehaviour {
 
+    private string sigmlFilesPath = "/Assets/SiGML_Files/";
+    private string pythonScriptsPath = "/Assets/PythonScripts/";
+
+
     //Checks if Python is installed -> if not installs it
     public void checkPythonInstallation(){
         ProcessStartInfo pythonVerify = new ProcessStartInfo();
@@ -47,20 +51,20 @@ public class RunPythonScripts : MonoBehaviour {
     public string runPythonScripts(string inputHTML, string finalOutput){
         //-------Run parser.py which receives ELAN html as input (inputHTML) and returns a .txt-------//
         string outputParser = "outputParser.txt";
-        string inputParser = inputHTML + " " + Path.GetDirectoryName(UnityEngine.Application.dataPath) + "/Assets/PythonScripts/" + outputParser;
+        string inputParser = inputHTML + " " + Path.GetDirectoryName(UnityEngine.Application.dataPath) + pythonScriptsPath + outputParser;
         ProcessStartInfo processInfoParser = new ProcessStartInfo();
         processInfoParser.FileName = "cmd.exe";
-        processInfoParser.WorkingDirectory = Path.GetDirectoryName(UnityEngine.Application.dataPath) + "/Assets/PythonScripts/";
+        processInfoParser.WorkingDirectory = Path.GetDirectoryName(UnityEngine.Application.dataPath) + pythonScriptsPath;
         processInfoParser.Arguments = "/C py -3 parser.py " + inputParser;     // "/K" to keep command line open
         Process.Start(processInfoParser);
 
         //-------Run HamNoSys_SiGML.py which receives parser output (outputParser) and returns a .sigml-------//
-        string outputFinal = Path.GetDirectoryName(UnityEngine.Application.dataPath) + "/Assets/SiGML_Files/" + finalOutput + ".sigml";
-        string inputHSiGML = Path.GetDirectoryName(UnityEngine.Application.dataPath) + "/Assets/PythonScripts/" + outputParser + " " +
-            Path.GetDirectoryName(UnityEngine.Application.dataPath) + "/Assets/SiGML_Files/" + finalOutput + ".sigml";
+        string outputFinal = Path.GetDirectoryName(UnityEngine.Application.dataPath) + sigmlFilesPath + finalOutput + ".sigml";
+        string inputHSiGML = Path.GetDirectoryName(UnityEngine.Application.dataPath) + pythonScriptsPath + outputParser + " " +
+            Path.GetDirectoryName(UnityEngine.Application.dataPath) + sigmlFilesPath + finalOutput + ".sigml";
         ProcessStartInfo processInfoHSiGML = new ProcessStartInfo();
         processInfoHSiGML.FileName = "cmd.exe";
-        processInfoHSiGML.WorkingDirectory = Path.GetDirectoryName(UnityEngine.Application.dataPath) + "/Assets/PythonScripts/";
+        processInfoHSiGML.WorkingDirectory = Path.GetDirectoryName(UnityEngine.Application.dataPath) + pythonScriptsPath;
         processInfoHSiGML.Arguments = "/C py -3 HamNoSys_SiGML.py " + inputHSiGML;
         Process.Start(processInfoHSiGML);
 
