@@ -25,3 +25,6 @@ The user also can extend the notation by adding the created HamNoSys codes and r
 parser.py: The parser developed is prepared to read an HTML exported from ELAN with two tiers (Glosses and HamNoSys respectively). If the user wishes to read a different input, for example a different number of tiers, this parser requires the appropriate adjustments.
 
 RunPythonScripts.cs: The python scripts to be saved in a folder "PythonScripts" within the Unity Assets folder. The output from the the parser.py will also be saved in this same folder. The sigml output will be also be saved within the Unity Assets folder, but in the folder "SiGML_Files". 
+
+
+For a more detailed description: https://www.aclweb.org/anthology/2020.lrec-1.739/
